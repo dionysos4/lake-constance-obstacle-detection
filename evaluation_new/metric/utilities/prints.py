@@ -16,11 +16,7 @@ import warnings
 from functools import partial, wraps
 from typing import Any, Callable
 
-import logging as __logging
-import os
-
-log = __logging.getLogger("torchmetrics")
-
+from metric import _logger as log
 
 
 def rank_zero_only(fn: Callable) -> Callable:

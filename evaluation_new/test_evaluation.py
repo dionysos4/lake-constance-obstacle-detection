@@ -2,12 +2,6 @@ import torch
 import numpy as np
 from metric.detection import MeanAveragePrecision
 
-from torchmetrics.detection import MeanAveragePrecision as MA
-#from detection.mean_ap import MeanAveragePrecision
-
-# TODO test für mehrer Bounding Boxes
-
-
 preds = [
     dict(
         boxes=torch.tensor([[258.0, 41.0, 606.0, 285.0]]),
@@ -53,8 +47,6 @@ target.append(
         labels=torch.tensor([0, 1]),
     )
 )
-
-
 
 metric = MA(class_metrics=True)
 metric.update(preds, target)

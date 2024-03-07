@@ -4,9 +4,10 @@ import numpy as np
 import datetime
 import time
 from collections import defaultdict
-import copy
-from pytorch3d.ops import box3d_overlap
+#from . import mask as maskUtils
 import torch
+from pytorch3d.ops import box3d_overlap
+import copy
 
 class COCOeval:
     # Interface for evaluating detection on the Microsoft COCO dataset.
@@ -90,7 +91,8 @@ class COCOeval:
         def _toMask(anns, coco):
             # modify ann['segmentation'] by reference
             for ann in anns:
-                pass
+                rle = coco.annToRLE(ann)
+                ann['segmentation'] = rle
         p = self.params
         if p.useCats:
             gts=self.cocoGt.loadAnns(self.cocoGt.getAnnIds(imgIds=p.imgIds, catIds=p.catIds))
@@ -190,8 +192,6 @@ class COCOeval:
             ious = []
         else:
             intersection_vol, ious = box3d_overlap(torch.tensor(d), torch.tensor(g))
-        #ious = torchvision.ops.box_iou(torch.tensor(d), torch.tensor(g)).numpy()
-        #ious = maskUtils.iou(d,g,iscrowd)
         return ious
 
     def computeOks(self, imgId, catId):
@@ -380,8 +380,8 @@ class COCOeval:
                     tps = np.logical_and(               dtm,  np.logical_not(dtIg) )
                     fps = np.logical_and(np.logical_not(dtm), np.logical_not(dtIg) )
 
-                    tp_sum = np.cumsum(tps, axis=1).astype(dtype=np.float32)
-                    fp_sum = np.cumsum(fps, axis=1).astype(dtype=np.float32)
+                    tp_sum = np.cumsum(tps, axis=1).astype(dtype=float)
+                    fp_sum = np.cumsum(fps, axis=1).astype(dtype=float)
                     for t, (tp, fp) in enumerate(zip(tp_sum, fp_sum)):
                         tp = np.array(tp)
                         fp = np.array(fp)
