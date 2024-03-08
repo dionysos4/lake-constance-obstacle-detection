@@ -33,4 +33,4 @@ Input to the metric are the vertices of the boxes in the following order
             ` .   |     ` . |
             (3) ` +---------+ (2)
 
-backend is pycocotools (not original implementation, fork which is recommended by torch metrics. Not the faster-coco-eval fork).
+Backend is pycocotools (Not original implementation. It is afork which is recommended by torch metrics but not the faster-coco-eval fork).

@@ -48,7 +48,7 @@ target.append(
     )
 )
 
-metric = MA(class_metrics=True)
+metric = MeanAveragePrecision(class_metrics=True)
 metric.update(preds, target)
 from pprint import pprint
 pprint(metric.compute())
