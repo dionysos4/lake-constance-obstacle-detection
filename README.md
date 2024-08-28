@@ -1,4 +1,4 @@
-### Lake Constance Obstacle Detection Benchmark
+#Lake Constance Obstacle Detection Benchmark
 
 This repository contains the baseline and the evaluation metric for the Lake Constance Obstacle Detection Data-set. ![image](img/eye_catcher.png)
 
@@ -33,3 +33,20 @@ Use faster_rcnn_eval.ipynb (adjust the paths) in the nn/evaluation directory
 
 #### Evaluate your model with the 3d detection baseline
 Set the path to your new trained model in lidar_evaluation.ipynb and run the cells.
+
+
+## Citation
+
+```bibtex
+@INPROCEEDINGS{griesser2024enhancing,
+  author={Griesser, Dennis and Franz, Matthias O. and Umlauf, Georg},
+  booktitle={2024 IEEE International Conference on Robotics and Automation (ICRA)}, 
+  title={Enhancing Inland Water Safety: The Lake Constance Obstacle Detection Benchmark}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={14808-14814},
+  doi={110.1109/ICRA57147.2024.10610600}
+}
+```
+
